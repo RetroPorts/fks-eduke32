@@ -26,11 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "duke3d.h"
 #include "sector.h"
 
-#ifdef __global_c__
-    #define G_EXTERN
-#else
-    #define G_EXTERN extern
-#endif
+#define G_EXTERN extern
 
 // duke3d global soup :(
 

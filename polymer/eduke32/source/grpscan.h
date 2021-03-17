@@ -31,7 +31,7 @@ struct grpfile {
 	int32_t size;
 	int32_t game;
 	struct grpfile *next;
-} grpfiles[numgrpfiles], *foundgrps;
+} extern grpfiles[numgrpfiles], *foundgrps;
 
 int32_t ScanGroups(void);
 void FreeGroups(void);

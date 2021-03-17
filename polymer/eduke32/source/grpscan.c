@@ -41,7 +41,7 @@ struct grpfile grpfiles[numgrpfiles] =
     { "Napalm",                        			0x3DE1589A, 44365728, GAMENAM,  NULL },
     { "WW2GI",                         			0x907B82BF, 77939508, GAMEWW2,  NULL },
 };
-struct grpfile *foundgrps = NULL;
+extern struct grpfile *foundgrps = NULL;
 
 #define GRPCACHEFILE "grpfiles.cache"
 static struct grpcache
@@ -239,4 +239,3 @@ void FreeGroups(void)
         foundgrps = fg;
     }
 }
-

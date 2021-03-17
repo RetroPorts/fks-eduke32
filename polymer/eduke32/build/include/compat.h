@@ -5,6 +5,9 @@
 #ifndef __compat_h__
 #define __compat_h__
 
+#include <stdint.h>
+#include <inttypes.h>
+
 # ifdef _WIN32
 #  define WIN32_LEAN_AND_MEAN
 #  include <windows.h>
@@ -26,7 +29,7 @@
 #endif
 
 #ifndef _MSC_VER
-#if defined(__GNUC__) && defined(__i386__) 
+#if defined(__GNUC__) && defined(__i386__)
 #ifndef __fastcall
 #define __fastcall __attribute__((fastcall))
 #endif
@@ -94,8 +97,8 @@
 #if defined(_MSC_VER)
 # define inline __inline
 # define longlong(x) x##i64
-static inline float nearbyintf(float x) 
-{ 
+static inline float nearbyintf(float x)
+{
     uint32_t w1, w2;
     __asm fnstcw w1
     w2 = w1 | 0x00000020;
@@ -436,7 +439,7 @@ int32_t		Bclosedir(BDIR *dir);
 # define Bstrncpy strncpy
 # define Bstrcmp strcmp
 # define Bstrncmp strncmp
-# if defined(_MSC_VER) 
+# if defined(_MSC_VER)
 #  define Bstrcasecmp _stricmp
 #  define Bstrncasecmp _strnicmp
 # else
@@ -560,4 +563,3 @@ char *Bstrupr(char *);
 #define EDUKE32_TMRPRN do { int ii=0; fprintf(stderr,"%s: ",tmrstr); for (ii=1; ii<ti; ii++) fprintf(stderr,"%d ", t[ii]-t[ii-1]); fprintf(stderr,"\n"); } while (0)
 
 #endif // __compat_h__
-

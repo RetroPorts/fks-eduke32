@@ -22,7 +22,7 @@ typedef struct _symbol
     int32_t (*func)(const osdfuncparm_t *);
 } symbol_t;
 
-symbol_t *symbols;
+extern symbol_t *symbols;
 
 const char *OSD_StripColors(char *out, const char *in);
 
@@ -62,7 +62,7 @@ typedef struct
     // everything before this point needs to match cvar_t
 
     // default value for cvar, assigned when var is registered
-    union 
+    union
     {
         int32_t i;
         uint32_t uint;
@@ -71,7 +71,7 @@ typedef struct
     } dval;
 } osdcvar_t;
 
-enum osdflags_t 
+enum osdflags_t
 {
     OSD_INITIALIZED = 0x00000001,
     OSD_DRAW        = 0x00000002,
@@ -198,4 +198,3 @@ extern int32_t  osdhistorysize;       // number of entries in history
 extern int32_t  osdhistorytotal;      // number of total history entries
 
 #endif // __osd_h__
-

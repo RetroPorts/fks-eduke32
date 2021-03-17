@@ -10,6 +10,8 @@ extern "C" {
 #endif
 
 #include <limits.h>
+#include <stdint.h>
+#include <inttypes.h>
 
 extern int32_t dmval;
 
@@ -1099,12 +1101,12 @@ void copybufreverse(void *S, void *D, int32_t c);
 
 
 //}}}
-	
+
 #elif defined(_MSC_VER) && !defined(NOASM)	// __GNUC__
 
 //
 // Microsoft C inline assembler
-// 
+//
 
 //{{{
 static __inline int32_t sqr(int32_t a)
@@ -1150,7 +1152,7 @@ MULSCALE(17)	MULSCALE(18)	MULSCALE(19)	MULSCALE(20)
 MULSCALE(21)	MULSCALE(22)	MULSCALE(23)	MULSCALE(24)
 MULSCALE(25)	MULSCALE(26)	MULSCALE(27)	MULSCALE(28)
 MULSCALE(29)	MULSCALE(30)	MULSCALE(31)
-#undef MULSCALE	
+#undef MULSCALE
 static __inline int32_t mulscale32(int32_t a, int32_t d)
 {
 	_asm {
@@ -1198,7 +1200,7 @@ DMULSCALE(17)	DMULSCALE(18)	DMULSCALE(19)	DMULSCALE(20)
 DMULSCALE(21)	DMULSCALE(22)	DMULSCALE(23)	DMULSCALE(24)
 DMULSCALE(25)	DMULSCALE(26)	DMULSCALE(27)	DMULSCALE(28)
 DMULSCALE(29)	DMULSCALE(30)	DMULSCALE(31)
-#undef DMULSCALE	
+#undef DMULSCALE
 static __inline int32_t dmulscale32(int32_t a, int32_t d, int32_t S, int32_t D)
 {
 	_asm {
@@ -1241,7 +1243,7 @@ TMULSCALE(17)	TMULSCALE(18)	TMULSCALE(19)	TMULSCALE(20)
 TMULSCALE(21)	TMULSCALE(22)	TMULSCALE(23)	TMULSCALE(24)
 TMULSCALE(25)	TMULSCALE(26)	TMULSCALE(27)	TMULSCALE(28)
 TMULSCALE(29)	TMULSCALE(30)	TMULSCALE(31)
-#undef TMULSCALE	
+#undef TMULSCALE
 static __inline int32_t tmulscale32(int32_t a, int32_t d, int32_t b, int32_t c, int32_t S, int32_t D)
 {
 	_asm {
@@ -1875,7 +1877,7 @@ static inline int32_t dmulscale(int32_t eax, int32_t edx, int32_t esi, int32_t e
 
 static inline int32_t boundmulscale(int32_t a, int32_t d, int32_t c)
 { // courtesy of Ken
-    int64_t p; 
+    int64_t p;
     p = (((int64_t)a)*((int64_t)d))>>c;
     if (p >= INT_MAX) p = INT_MAX;
     if (p < INT_MIN) p = INT_MIN;
@@ -1906,4 +1908,3 @@ void copybufreverse(void *S, void *D, int32_t c);
 #endif
 
 #endif // __pragmas_h__
-

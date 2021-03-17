@@ -4,6 +4,7 @@
 //
 // Use SDL 1.2 or 1.3 from http://www.libsdl.org
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <signal.h>
@@ -185,20 +186,6 @@ int32_t main(int32_t argc, char *argv[])
     _buildargc = argc;
     _buildargv = (const char**)argv;
 
-    // pipe standard outputs to files
-    if ((argp = Bgetenv("BUILD_LOGSTDOUT")) != NULL)
-        if (!Bstrcasecmp(argp, "TRUE"))
-        {
-            fp = freopen("stdout.txt", "w", stdout);
-            if (!fp)
-            {
-                fp = fopen("stdout.txt", "w");
-            }
-            if (fp) setvbuf(fp, 0, _IONBF, 0);
-            *stdout = *fp;
-            *stderr = *fp;
-        }
-
 #if defined(USE_OPENGL) && defined(POLYMOST)
     if ((argp = Bgetenv("BUILD_NOFOG")) != NULL)
         nofog = Batol(argp);
@@ -314,7 +301,7 @@ int32_t initsystem(void)
 #endif
 
 #ifndef __APPLE__
-        
+
     //icon = loadtarga("icon.tga");
     appicon = loadappicon();
     if (appicon)
@@ -1495,7 +1482,7 @@ int32_t setpalette(int32_t start, int32_t num)
         curpalettefaded[i].f = pal[i].unused = 0;
 
     //return SDL_SetPalette(sdl_surface, SDL_LOGPAL|SDL_PHYSPAL, pal, 0, 256);
-    
+
     return sdl_surface ? SDL_SetColors(sdl_surface, pal, 0, 256) : 0;
 }
 
@@ -1598,7 +1585,7 @@ int32_t handleevents(void)
                 if (code != scantoasc[OSD_OSDKey()] && ((keyasciififoend+1)&(KEYFIFOSIZ-1)) != keyasciififoplc)
                 {
 //                    printf("got char %d\n",code);
-                    
+
                     if (OSD_HandleChar(code))
                     {
                         keyasciififo[keyasciififoend] = code;

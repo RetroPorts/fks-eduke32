@@ -140,7 +140,7 @@ static volatile VoiceNode VoicePool;
 static int32_t MV_MixPage      = 0;
 static int32_t MV_VoiceHandle  = MV_MinVoiceHandle;
 
-void (*MV_Printf)(const char *fmt, ...) = NULL;
+static void (*MV_Printf)(const char *fmt, ...) = NULL;
 static void (*MV_CallBackFunc)(uint32_t) = NULL;
 static void (*MV_MixFunction)(VoiceNode *voice, int32_t buffer);
 

@@ -884,4 +884,3 @@ void CONTROL_Shutdown(void)
 
     CONTROL_Started = FALSE;
 }
-
