@@ -589,7 +589,7 @@ int32_t clipmapinfo_load(char *filename)
                         else
                         {
                             if (wall[w].hitag<MAXTILES)
-                                tempictoidx[wall[w].hitag] = numclipmaps;                            
+                                tempictoidx[wall[w].hitag] = numclipmaps;
                         }
                     }
 
@@ -6040,7 +6040,7 @@ int32_t preinitengine(void)
 
         for (i=0;i<(signed)(sizeof(dynarray)/sizeof(dynarray[0])); i++)
             size += dynarray[i].size;
-      
+
         if ((blockptr = Bcalloc(1, size)) == NULL)
             return 1;
 
@@ -8158,19 +8158,8 @@ int32_t setgamemode(char davidoption, int32_t daxdim, int32_t daydim, int32_t da
 {
     int32_t i, j;
 
-#if defined(USE_OPENGL) && defined(POLYMOST)
-    extern char nogl;
-
-    if (nogl) dabpp = 8;
-#endif
     if ((qsetmode == 200) && (videomodereset == 0) &&
-            (davidoption == fullscreen) && (xdim == daxdim) && (ydim == daydim) && (bpp == dabpp)
-/*
-#ifdef POLYMER
-            && glrendmode != 4
-#endif // POLYMER
-*/
-       )
+            (davidoption == fullscreen) && (xdim == daxdim) && (ydim == daydim) && (bpp == dabpp))
         return(0);
 
     strcpy(kensmessage,"!!!! BUILD engine&tools programmed by Ken Silverman of E.G. RI.  (c) Copyright 1995 Ken Silverman.  Summary:  BUILD = Ken. !!!!");
@@ -8184,7 +8173,7 @@ int32_t setgamemode(char davidoption, int32_t daxdim, int32_t daydim, int32_t da
     j = bpp;
 
     if (setvideomode(daxdim,daydim,dabpp,davidoption) < 0) return(-1);
-    
+
     // Workaround possible bugs in the GL driver
     makeasmwriteable();
 
@@ -8279,7 +8268,7 @@ void nextpage(void)
                                per->dashade,per->dapalnum,per->dastat,
                                per->cx1,per->cy1,per->cx2,per->cy2,per->uniqid);
         }
-        enddrawing();   //}}}                                      
+        enddrawing();   //}}}
 
         OSD_Draw();
         showframe(0);
@@ -8968,7 +8957,7 @@ static int32_t hitscan_trysector(const vec3_t *sv, const sectortype *sec, hitdat
                 {
                     hitinfo->hitsect = curspr->sectnum; hitinfo->hitwall = -1; hitinfo->hitsprite = curspr-sprite;
                     hitinfo->pos.x = x1; hitinfo->pos.y = y1; hitinfo->pos.z = z1;
-                }                
+                }
             }
             else
             {
@@ -12142,7 +12131,7 @@ void draw2dscreen(int32_t posxe, int32_t posye, int16_t ange, int32_t zoome, int
                 {
                     int32_t pointsize = 2;
 
-                    if (i == pointhighlight || ((pointhighlight < MAXWALLS) && (pointhighlight >= 0) && 
+                    if (i == pointhighlight || ((pointhighlight < MAXWALLS) && (pointhighlight >= 0) &&
                         (wall[i].x == wall[pointhighlight].x) && (wall[i].y == wall[pointhighlight].y)))
                     {
                         if (totalclock & 16)
@@ -13186,7 +13175,7 @@ int32_t hash_find(hashtable_t *t, const char *s)
     }
 
     if ((cur = t->items[hash_getcode(s) % t->size]) == NULL) return -1;
-    
+
     do
         if (Bstrcmp(s,cur->string) == 0)
             return cur->key;
@@ -13218,4 +13207,3 @@ int32_t hash_findcase(hashtable_t *t, const char *s)
 /*
  * vim:ts=8:
  */
-

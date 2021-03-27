@@ -139,6 +139,8 @@ int32_t ScanGroups(void)
             Bfree(fn);
             if (fg->size == st.st_size && fg->mtime == st.st_mtime)
             {
+
+
                 grp = (struct grpfile *)Bcalloc(1, sizeof(struct grpfile));
                 grp->name = Bstrdup(sidx->name);
                 grp->crcval = fg->crcval;
